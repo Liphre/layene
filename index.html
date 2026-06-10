@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Layene ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Georgia,serif;
+background:linear-gradient(180deg,#fdf8f5,#f7efeb);
+color:#5c4a45;overflow-x:hidden
+}
+#inicio,#conteudo{min-height:100vh}
+#inicio{
+display:flex;flex-direction:column;justify-content:center;align-items:center;
+text-align:center;padding:30px
+}
+h1{margin-bottom:10px}
+#conteudo{display:none;animation:fade .8s}
+.envelope-container{cursor:pointer}
+.envelope{width:240px;height:160px;position:relative;margin:30px auto}
+.envelope-body{
+position:absolute;width:100%;height:100%;
+background:#d9b8b0;border-radius:12px;
+display:flex;justify-content:center;align-items:center;
+font-size:60px;box-shadow:0 15px 30px rgba(0,0,0,.15);
+z-index:2
+}
+.envelope-top{
+position:absolute;width:0;height:0;
+border-left:120px solid transparent;
+border-right:120px solid transparent;
+border-top:90px solid #c79f96;
+transform-origin:top;
+transition:1.2s;
+z-index:3
+}
+.carta-saindo{
+position:absolute;
+left:30px;top:30px;
+width:180px;height:120px;
+background:#fff;border-radius:8px;
+transition:1.2s;z-index:1
+}
+.envelope.aberto .envelope-top{transform:rotateX(180deg)}
+.envelope.aberto .carta-saindo{transform:translateY(-90px)}
+.hero{text-align:center;padding:50px 20px}
+.contador{font-size:1.2rem;font-weight:bold;margin-top:20px}
+.carta{
+max-width:800px;margin:20px auto;background:#fff;
+padding:35px;border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+line-height:1.9
+}
+.polaroid{
+background:#fff;padding:15px;margin:35px auto;
+width:90%;max-width:500px;border-radius:10px;
+box-shadow:0 15px 25px rgba(0,0,0,.15)
+}
+.polaroid img{width:100%;border-radius:8px}
+.legenda{text-align:center;margin-top:10px;font-style:italic}
+.final{text-align:center;padding:50px 20px}
+.petala{
+position:fixed;top:-50px;pointer-events:none;z-index:999;
+animation:cair linear forwards
+}
+@keyframes cair{
+from{transform:translateY(-50px) rotate(0)}
+to{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<section id="inicio">
+<h1>🌹</h1>
+<h1>Para Layene Rodrigues da Silva</h1>
+<p>Uma pequena surpresa preparada com amor.</p>
+
+<div class="envelope-container" onclick="abrirCarta()">
+<div class="envelope" id="envelope">
+<div class="envelope-top"></div>
+<div class="carta-saindo"></div>
+<div class="envelope-body">💌</div>
+</div>
+<p>Toque para abrir sua carta ❤️</p>
+</div>
+</section>
+
+<section id="conteudo">
+<div class="hero">
+<h2>❤️ Feliz Dia dos Namorados ❤️</h2>
+<div class="contador" id="contador"></div>
+<div style="margin-top:10px;">Desde 28 de agosto de 2024 ❤️</div>
+</div>
+
+<div class="carta">
+<p>
+Layene,<br><br>
+Existem momentos na vida que marcam para sempre nossa história.<br><br>
+Para mim, um desses momentos foi o dia 28 de agosto de 2024.<br><br>
+Naquele dia começou uma caminhada que me trouxe inúmeros sorrisos, lembranças especiais e a certeza de que algumas pessoas têm o poder de transformar nossa vida simplesmente por estarem presentes nela.<br><br>
+Ao seu lado aprendi que o amor está nos detalhes mais simples: nas conversas sem pressa, nos abraços que confortam, nos sonhos compartilhados e na alegria de saber que existe alguém especial caminhando junto comigo.<br><br>
+Obrigado por cada momento vivido, por cada apoio, por cada risada e por cada lembrança que construímos.<br><br>
+Que nossa caminhada continue sendo guiada pelo carinho, pela fé e pelo amor que cresce a cada dia.<br><br>
+Neste Dia dos Namorados, quero apenas que você saiba que é uma das pessoas mais importantes da minha vida.<br><br>
+E que, entre todos os lugares do mundo, meu lugar favorito continua sendo ao seu lado.
+</p>
+<br>
+<strong>Com amor,<br>Filipe ❤️</strong>
+</div>
+
+<div class="polaroid">
+<img src="https://i.postimg.cc/JzWt3p0W/Whats-App-Image-2026-06-10-at-15-11-46.jpg">
+<div class="legenda">Onde nossa história começou...</div>
+</div>
+
+<div class="polaroid">
+<img src="https://i.postimg.cc/k4D5MZ1n/Whats-App-Image-2026-06-10-at-15-14-18.jpg">
+<div class="legenda">Momentos que guardarei para sempre...</div>
+</div>
+
+<div class="polaroid">
+<img src="https://i.postimg.cc/v8chgtcg/3c4a13e9-0c1b-46c3-8d3a-17bbc30a8506.jpg">
+<div class="legenda">E muitos capítulos ainda estão por vir...</div>
+</div>
+
+<div class="final">
+❤️<br><br>
+Entre todos os caminhos que percorri, uma das melhores decisões da minha vida foi seguir ao seu lado.<br><br>
+Obrigado por cada sorriso, cada abraço e cada momento compartilhado.<br><br>
+Feliz Dia dos Namorados.<br><br>
+Com amor,<br><br>
+Filipe ❤️
+<br><br>
+<small>28/08/2024 ❤️ Para sempre</small>
+</div>
+</section>
+
+<script>
+function abrirCarta(){
+ const env=document.getElementById('envelope');
+ env.classList.add('aberto');
+
+ setTimeout(()=>{
+   document.getElementById('inicio').style.display='none';
+   document.getElementById('conteudo').style.display='block';
+   iniciarCoracoes();
+   atualizarContador();
+ },1800);
+}
+
+function atualizarContador(){
+ const inicio=new Date('2024-08-28');
+ const hoje=new Date();
+ let anos=hoje.getFullYear()-inicio.getFullYear();
+ let meses=hoje.getMonth()-inicio.getMonth();
+ let dias=hoje.getDate()-inicio.getDate();
+ if(dias<0){meses--;dias+=30;}
+ if(meses<0){anos--;meses+=12;}
+ document.getElementById('contador').innerHTML=
+ `Estamos escrevendo nossa história há<br><br>${anos} ano(s), ${meses} mês(es) e ${dias} dia(s)`;
+}
+
+function criar(){
+ const itens=["❤️","💘","💕","💞","💓","💗","💝"];
+ const e=document.createElement("div");
+ e.className="petala";
+ e.innerHTML=itens[Math.floor(Math.random()*itens.length)];
+ e.style.left=Math.random()*100+"vw";
+ e.style.fontSize=(18+Math.random()*25)+"px";
+ e.style.animationDuration=(8+Math.random()*7)+"s";
+ document.body.appendChild(e);
+ setTimeout(()=>e.remove(),15000);
+}
+function iniciarCoracoes(){setInterval(criar,500);}
+</script>
+</body>
+</html>
