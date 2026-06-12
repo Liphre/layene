@@ -18,35 +18,82 @@ text-align:center;padding:30px
 }
 h1{margin-bottom:10px}
 #conteudo{display:none;animation:fade .8s}
-.envelope-container{cursor:pointer}
-.envelope{width:240px;height:160px;position:relative;margin:30px auto}
+
+/* --- CSS DO ENVELOPE --- */
+.envelope-container{
+    cursor:pointer;
+    text-align:center;
+}
+
+.envelope{
+    width:240px;
+    height:160px;
+    margin:auto;
+    position:relative;
+    perspective:1000px;
+}
+
 .envelope-body{
-position:absolute;width:100%;height:100%;
-background:#d9b8b0;border-radius:12px;
-display:flex;justify-content:center;align-items:center;
-font-size:60px;box-shadow:0 15px 30px rgba(0,0,0,.15);
-z-index:2
+    width:100%;
+    height:100%;
+    background:#d9b8b0;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:absolute;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+    z-index:2;
 }
+
 .envelope-top{
-position:absolute;width:0;height:0;
-border-left:120px solid transparent;
-border-right:120px solid transparent;
-border-top:90px solid #c79f96;
-transform-origin:top;
-transition:1.2s;
-z-index:3
+    position:absolute;
+    width:0;
+    height:0;
+    border-left:120px solid transparent;
+    border-right:120px solid transparent;
+    border-top:90px solid #c79f96;
+    transform-origin:top;
+    transition:1.2s;
+    z-index:3;
 }
+
 .carta-saindo{
-position:absolute;
-left:30px;top:30px;
-width:180px;height:120px;
-background:#fff;border-radius:8px;
-transition:1.2s;z-index:1
+    position:absolute;
+    width:180px;
+    height:120px;
+    background:white;
+    left:30px;
+    bottom:10px;
+    border-radius:8px;
+    z-index:1;
+    transition:all 1.3s ease-in-out; /* Suaviza a transição de crescimento */
+    transform-origin:center; /* Garante o crescimento perfeito a partir do centro */
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
-.envelope.aberto .envelope-top{transform:rotateX(180deg)}
-.envelope.aberto .carta-saindo{transform:translateY(-90px)}
+
+.envelope.aberto .envelope-top{
+    transform:rotateX(180deg);
+}
+
+.envelope.aberto .carta-saindo{
+    transform:translateY(-120px);
+}
+
+.selo{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+}
+/* ---------------------------- */
+
 .hero{text-align:center;padding:50px 20px}
-.contador{font-size:1.2rem;font-weight:bold;margin-top:20px}
+.contador{font-size:1.3rem;font-weight:bold;margin-top:20px;line-height:1.6;color:#b35c5c}
 .carta{
 max-width:800px;margin:20px auto;background:#fff;
 padding:35px;border-radius:20px;
@@ -66,8 +113,9 @@ position:fixed;top:-50px;pointer-events:none;z-index:999;
 animation:cair linear forwards
 }
 @keyframes cair{
-from{transform:translateY(-50px) rotate(0)}
-to{transform:translateY(110vh) rotate(360deg);opacity:0}
+0%{transform:translateY(-50px) translateX(0) rotate(0);}
+50%{transform:translateY(50vh) translateX(20px) rotate(180deg);}
+100%{transform:translateY(110vh) translateX(-20px) rotate(360deg);opacity:0}
 }
 @keyframes fade{from{opacity:0}to{opacity:1}}
 </style>
@@ -77,15 +125,17 @@ to{transform:translateY(110vh) rotate(360deg);opacity:0}
 <section id="inicio">
 <h1>🌹</h1>
 <h1>Para Layene Rodrigues da Silva</h1>
-<p>Uma pequena surpresa preparada com amor.</p>
+<p style="margin-bottom: 25px;">Uma pequena surpresa preparada com amor.</p>
 
 <div class="envelope-container" onclick="abrirCarta()">
-<div class="envelope" id="envelope">
-<div class="envelope-top"></div>
-<div class="carta-saindo"></div>
-<div class="envelope-body">💌</div>
-</div>
-<p>Toque para abrir sua carta ❤️</p>
+    <div class="envelope" id="envelope">
+        <div class="envelope-top"></div>
+        <div class="carta-saindo"></div>
+        <div class="envelope-body">
+            <div class="selo">❤️</div>
+        </div>
+    </div>
+    <p style="font-style: italic; color: #8c7670; margin-top: 20px;">Toque para abrir sua carta ❤️</p>
 </div>
 </section>
 
@@ -93,7 +143,7 @@ to{transform:translateY(110vh) rotate(360deg);opacity:0}
 <div class="hero">
 <h2>❤️ Feliz Dia dos Namorados ❤️</h2>
 <div class="contador" id="contador"></div>
-<div style="margin-top:10px;">Desde 28 de agosto de 2024 ❤️</div>
+<div style="margin-top:10px; font-style: italic;">Desde 28 de agosto de 2024 ❤️</div>
 </div>
 
 <div class="carta">
@@ -113,17 +163,17 @@ E que, entre todos os lugares do mundo, meu lugar favorito continua sendo ao seu
 </div>
 
 <div class="polaroid">
-<img src="https://i.postimg.cc/JzWt3p0W/Whats-App-Image-2026-06-10-at-15-11-46.jpg">
+<img src="https://i.postimg.cc/JzWt3p0W/Whats-App-Image-2026-06-10-at-15-11-46.jpg" alt="Foto 1">
 <div class="legenda">Onde nossa história começou...</div>
 </div>
 
 <div class="polaroid">
-<img src="https://i.postimg.cc/k4D5MZ1n/Whats-App-Image-2026-06-10-at-15-14-18.jpg">
+<img src="https://i.postimg.cc/k4D5MZ1n/Whats-App-Image-2026-06-10-at-15-14-18.jpg" alt="Foto 2">
 <div class="legenda">Momentos que guardarei para sempre...</div>
 </div>
 
 <div class="polaroid">
-<img src="https://i.postimg.cc/v8chgtcg/3c4a13e9-0c1b-46c3-8d3a-17bbc30a8506.jpg">
+<img src="https://i.postimg.cc/v8chgtcg/3c4a13e9-0c1b-46c3-8d3a-17bbc30a8506.jpg" alt="Foto 3">
 <div class="legenda">E muitos capítulos ainda estão por vir...</div>
 </div>
 
@@ -140,42 +190,72 @@ Filipe ❤️
 </section>
 
 <script>
+/* --- SUA NOVA FUNÇÃO DE ABRIR A CARTA --- */
 function abrirCarta(){
- const env=document.getElementById('envelope');
- env.classList.add('aberto');
+    const envelope = document.getElementById("envelope");
+    envelope.classList.add("aberto");
 
- setTimeout(()=>{
-   document.getElementById('inicio').style.display='none';
-   document.getElementById('conteudo').style.display='block';
-   iniciarCoracoes();
-   atualizarContador();
- },1800);
+    setTimeout(() => {
+        const carta = document.querySelector(".carta-saindo");
+        carta.style.position = "fixed";
+        carta.style.left = "50%";
+        carta.style.top = "50%";
+        carta.style.transform = "translate(-50%, -50%) scale(8)";
+        carta.style.zIndex = "9999";
+    }, 1200);
+
+    setTimeout(() => {
+        document.getElementById("inicio").style.display = "none";
+        document.getElementById("conteudo").style.display = "block";
+        window.scrollTo({top: 0}); // Garante que a carta comece do topo ao aparecer
+        iniciarCoracoes();
+        atualizarContador();
+        setInterval(atualizarContador, 1000); // Mantém o contador atualizando a cada segundo
+    }, 2500);
 }
+/* --------------------------------------- */
 
 function atualizarContador(){
- const inicio=new Date('2024-08-28');
- const hoje=new Date();
- let anos=hoje.getFullYear()-inicio.getFullYear();
- let meses=hoje.getMonth()-inicio.getMonth();
- let dias=hoje.getDate()-inicio.getDate();
- if(dias<0){meses--;dias+=30;}
- if(meses<0){anos--;meses+=12;}
- document.getElementById('contador').innerHTML=
- `Estamos escrevendo nossa história há<br><br>${anos} ano(s), ${meses} mês(es) e ${dias} dia(s)`;
+ const dataInicio = new Date('2024-08-28T00:00:00');
+ const agora = new Date();
+ 
+ let anos = agora.getFullYear() - dataInicio.getFullYear();
+ let meses = agora.getMonth() - dataInicio.getMonth();
+ let dias = agora.getDate() - dataInicio.getDate();
+ 
+ if (dias < 0) {
+   meses--;
+   const copiaData = new Date(agora.getFullYear(), agora.getMonth(), 0);
+   dias += copiaData.getDate();
+ }
+ if (meses < 0) {
+   anos--;
+   meses += 12;
+ }
+ 
+ const horas = agora.getHours();
+ const minutos = agora.getMinutes();
+ const segundos = agora.getSeconds();
+
+ document.getElementById('contador').innerHTML =
+ `Estamos escrevendo nossa história há:<br>
+ <span>${anos} ano(s), ${meses} mês(es) e ${dias} dia(s)</span><br>
+ <span style="font-size: 1rem; color: #7a635c;">e ${horas}h ${minutos}m ${segundos}s focados em você</span>`;
 }
 
 function criar(){
- const itens=["❤️","💘","💕","💞","💓","💗","💝"];
- const e=document.createElement("div");
- e.className="petala";
- e.innerHTML=itens[Math.floor(Math.random()*itens.length)];
- e.style.left=Math.random()*100+"vw";
- e.style.fontSize=(18+Math.random()*25)+"px";
- e.style.animationDuration=(8+Math.random()*7)+"s";
+ const itens = ["❤️","💘","💕","💞","💓","💗","💝"];
+ const e = document.createElement("div");
+ e.className = "petala";
+ e.innerHTML = itens[Math.floor(Math.random() * itens.length)];
+ e.style.left = Math.random() * 100 + "vw";
+ e.style.fontSize = (18 + Math.random() * 25) + "px";
+ e.style.animationDuration = (6 + Math.random() * 6) + "s";
  document.body.appendChild(e);
- setTimeout(()=>e.remove(),15000);
+ setTimeout(() => e.remove(), 12000);
 }
-function iniciarCoracoes(){setInterval(criar,500);}
+
+function iniciarCoracoes(){ setInterval(criar, 400); }
 </script>
 </body>
 </html>
