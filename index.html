@@ -67,8 +67,8 @@ h1{margin-bottom:10px}
     bottom:10px;
     border-radius:8px;
     z-index:1;
-    transition:all 1.3s ease-in-out; /* Suaviza a transição de crescimento */
-    transform-origin:center; /* Garante o crescimento perfeito a partir do centro */
+    transition:all 1.3s ease-in-out;
+    transform-origin:center;
     box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
@@ -159,6 +159,7 @@ Neste Dia dos Namorados, quero apenas que você saiba que é uma das pessoas mai
 E que, entre todos os lugares do mundo, meu lugar favorito continua sendo ao seu lado.
 </p>
 <br>
+<strong>Com amor,<br>Filipe ❤️</strong>
 </div>
 
 <div class="polaroid">
@@ -182,17 +183,26 @@ Entre todos os caminhos que percorri, uma das melhores decisões da minha vida f
 Obrigado por cada sorriso, cada abraço e cada momento compartilhado.<br><br>
 Feliz Dia dos Namorados.<br><br>
 Com amor,<br><br>
-Filipe Barbosa Monfarini ❤️
+Filipe ❤️
 <br><br>
 <small>28/08/2024 ❤️ Para sempre</small>
 </div>
 </section>
 
+<audio id="musica" preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-/* --- SUA NOVA FUNÇÃO DE ABRIR A CARTA --- */
 function abrirCarta(){
     const envelope = document.getElementById("envelope");
     envelope.classList.add("aberto");
+
+    // INICIA A MÚSICA ASSIM QUE O ENVELOPE É CLICADO
+    const musica = document.getElementById("musica");
+    musica.play().catch(() => {
+        console.log("Autoplay bloqueado");
+    });
 
     setTimeout(() => {
         const carta = document.querySelector(".carta-saindo");
@@ -206,13 +216,12 @@ function abrirCarta(){
     setTimeout(() => {
         document.getElementById("inicio").style.display = "none";
         document.getElementById("conteudo").style.display = "block";
-        window.scrollTo({top: 0}); // Garante que a carta comece do topo ao aparecer
+        window.scrollTo({top: 0});
         iniciarCoracoes();
         atualizarContador();
-        setInterval(atualizarContador, 1000); // Mantém o contador atualizando a cada segundo
+        setInterval(atualizarContador, 1000);
     }, 2500);
 }
-/* --------------------------------------- */
 
 function atualizarContador(){
  const dataInicio = new Date('2024-08-28T00:00:00');
@@ -233,13 +242,13 @@ function atualizarContador(){
  }
  
  const horas = agora.getHours();
- const minutos = agora.getMinutes();
+ const minutes = agora.getMinutes();
  const segundos = agora.getSeconds();
 
  document.getElementById('contador').innerHTML =
  `Estamos escrevendo nossa história há:<br>
  <span>${anos} ano(s), ${meses} mês(es) e ${dias} dia(s)</span><br>
- <span style="font-size: 1rem; color: #7a635c;">e ${horas}h ${minutos}m ${segundos}s focados em você</span>`;
+ <span style="font-size: 1rem; color: #7a635c;">e ${horas}h ${minutes}m ${segundos}s focados em você</span>`;
 }
 
 function criar(){
