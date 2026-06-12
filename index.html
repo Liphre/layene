@@ -17,7 +17,7 @@ display:flex;flex-direction:column;justify-content:center;align-items:center;
 text-align:center;padding:30px
 }
 h1{margin-bottom:10px}
-#conteudo{display:none;animation:fade .8s}
+#conteudo{display:none;animation:fade 1.2s ease-in-out}
 
 /* --- CSS DO ENVELOPE --- */
 .envelope-container{
@@ -54,7 +54,7 @@ h1{margin-bottom:10px}
     border-right:120px solid transparent;
     border-top:90px solid #c79f96;
     transform-origin:top;
-    transition:1.2s;
+    transition:1.2s cubic-bezier(0.4, 0, 0.2, 1);
     z-index:3;
 }
 
@@ -67,17 +67,46 @@ h1{margin-bottom:10px}
     bottom:10px;
     border-radius:8px;
     z-index:1;
-    transition:all 1.3s ease-in-out;
-    transform-origin:center;
+    transition:transform 1.2s ease-in-out;
     box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
+/* Quando o envelope abre, a carta apenas aponta para fora */
 .envelope.aberto .envelope-top{
     transform:rotateX(180deg);
 }
 
 .envelope.aberto .carta-saindo{
-    transform:translateY(-120px);
+    transform:translateY(-110px);
+}
+
+/* NOVA ANIMAÇÃO DE EXPANSÃO CINEMATOGRÁFICA */
+.carta-saindo.expandir {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    /* Executa a animação em 1.5 segundos de forma ultra suave */
+    animation: zoomCinematografico 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes zoomCinematografico {
+    0% {
+        /* Ponto de partida: saindo do topo do envelope */
+        transform: translate(-50%, -150%) scale(1);
+        opacity: 1;
+    }
+    40% {
+        /* Pausa dramática no centro da tela */
+        transform: translate(-50%, -50%) scale(1.2);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        opacity: 1;
+    }
+    100% {
+        /* Expansão gigante cobrindo tudo e sumindo suavemente */
+        transform: translate(-50%, -50%) scale(10);
+        opacity: 0;
+    }
 }
 
 .selo{
@@ -198,21 +227,18 @@ function abrirCarta(){
     const envelope = document.getElementById("envelope");
     envelope.classList.add("aberto");
 
-    // INICIA A MÚSICA ASSIM QUE O ENVELOPE É CLICADO
     const musica = document.getElementById("musica");
     musica.play().catch(() => {
         console.log("Autoplay bloqueado");
     });
 
+    // Passo 1: Espera o envelope abrir (1.2s) e ativa a animação CSS refinada
     setTimeout(() => {
         const carta = document.querySelector(".carta-saindo");
-        carta.style.position = "fixed";
-        carta.style.left = "50%";
-        carta.style.top = "50%";
-        carta.style.transform = "translate(-50%, -50%) scale(8)";
-        carta.style.zIndex = "9999";
+        carta.classList.add("expandir");
     }, 1200);
 
+    // Passo 2: O tempo total agora é 2.7s (1.2s abrindo + 1.5s da animação da carta)
     setTimeout(() => {
         document.getElementById("inicio").style.display = "none";
         document.getElementById("conteudo").style.display = "block";
@@ -220,7 +246,7 @@ function abrirCarta(){
         iniciarCoracoes();
         atualizarContador();
         setInterval(atualizarContador, 1000);
-    }, 2500);
+    }, 2700);
 }
 
 function atualizarContador(){
