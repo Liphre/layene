@@ -71,7 +71,6 @@ h1{margin-bottom:10px}
     box-shadow:0 5px 15px rgba(0,0,0,.15);
 }
 
-/* Quando o envelope abre, a carta apenas aponta para fora */
 .envelope.aberto .envelope-top{
     transform:rotateX(180deg);
 }
@@ -80,30 +79,25 @@ h1{margin-bottom:10px}
     transform:translateY(-110px);
 }
 
-/* NOVA ANIMAÇÃO DE EXPANSÃO CINEMATOGRÁFICA */
 .carta-saindo.expandir {
     position: fixed;
     left: 50%;
     top: 50%;
     z-index: 9999;
-    /* Executa a animação em 1.5 segundos de forma ultra suave */
     animation: zoomCinematografico 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 @keyframes zoomCinematografico {
     0% {
-        /* Ponto de partida: saindo do topo do envelope */
         transform: translate(-50%, -150%) scale(1);
         opacity: 1;
     }
     40% {
-        /* Pausa dramática no centro da tela */
         transform: translate(-50%, -50%) scale(1.2);
         box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         opacity: 1;
     }
     100% {
-        /* Expansão gigante cobrindo tudo e sumindo suavemente */
         transform: translate(-50%, -50%) scale(10);
         opacity: 0;
     }
@@ -188,7 +182,7 @@ Neste Dia dos Namorados, quero apenas que você saiba que é uma das pessoas mai
 E que, entre todos os lugares do mundo, meu lugar favorito continua sendo ao seu lado.
 </p>
 <br>
-<strong>Com amor,<br>Filipe ❤️</strong>
+<strong>Com amor,<br>FILIPE BARBOSA MONFARDINI ❤️</strong>
 </div>
 
 <div class="polaroid">
@@ -211,9 +205,6 @@ E que, entre todos os lugares do mundo, meu lugar favorito continua sendo ao seu
 Entre todos os caminhos que percorri, uma das melhores decisões da minha vida foi seguir ao seu lado.<br><br>
 Obrigado por cada sorriso, cada abraço e cada momento compartilhado.<br><br>
 Feliz Dia dos Namorados.<br><br>
-Com amor,<br><br>
-Filipe ❤️
-<br><br>
 <small>28/08/2024 ❤️ Para sempre</small>
 </div>
 </section>
@@ -228,17 +219,19 @@ function abrirCarta(){
     envelope.classList.add("aberto");
 
     const musica = document.getElementById("musica");
+    
+    // CONFIGURA A MÚSICA PARA COMEÇAR EXATAMENTE AOS 5 SEGUNDOS
+    musica.currentTime = 5; 
+    
     musica.play().catch(() => {
         console.log("Autoplay bloqueado");
     });
 
-    // Passo 1: Espera o envelope abrir (1.2s) e ativa a animação CSS refinada
     setTimeout(() => {
         const carta = document.querySelector(".carta-saindo");
         carta.classList.add("expandir");
     }, 1200);
 
-    // Passo 2: O tempo total agora é 2.7s (1.2s abrindo + 1.5s da animação da carta)
     setTimeout(() => {
         document.getElementById("inicio").style.display = "none";
         document.getElementById("conteudo").style.display = "block";
